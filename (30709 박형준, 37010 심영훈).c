@@ -4,7 +4,6 @@
 문의 : yunghoon1010@naver.com
 */
 
-
 #include <stdio.h>
 #include <Windows.h>
 #include <conio.h>
@@ -73,11 +72,7 @@ void T_Cabinet(); 	// 캐비넷
 void T_Door();	// 문
 	void O_Password();	// 문 비밀번호 입력
 
-void InputGetch()
-{
-	printf("계속 하려면 아무 키나 누르시오...\n\n");
-	getch();
-}
+void InputGetch();
  
 void WaitSecond(float _seconds)
 {
@@ -91,16 +86,17 @@ void RenderLine()
 
 void ErrorMessage()
 {
+	Clear();
 	printf("입력에러 [ERROR]\n\n");
+	InputGetch();
 }
  
 int main(void)
 {
 	int menu;
 	
-	do
+	while (complete)
 	{
-		Clear();
 		RenderLine();
 		printf("TITLE : 검은방\n\n");
 		printf("1. 게임시작    2. 게임종료\n\n");
@@ -117,8 +113,8 @@ int main(void)
 			default:
 				ErrorMessage();
 				 
-		} 
-	} while (complete);
+		}
+	}
 	
 	return 0;
 }
@@ -133,7 +129,7 @@ void GameStart()
 		Clear();
 		RenderLine();
 		printf("[방]\n\n");
-		printf("1. TV    2. 공구상자    3. 문    0. 인벤토리\n\n");
+		printf("1. TV    2. 공구상자    3. 문\n\n");
 		printf(">>> ");
 		scanf("%d", &g_Select);
 		g_Select += 1000;
@@ -148,7 +144,6 @@ void GameStart()
 				break;
 			case DT_Door:
 				T_Door();
-				
 				if (complete) {
 					Clear();
 					RenderLine();
@@ -158,7 +153,6 @@ void GameStart()
 					Clear(); 
 					return;
 				}
-				
 				break;
 			case DT_Inven:
 				if (inven == DI_Memo)
@@ -173,7 +167,6 @@ void GameStart()
 				else
 				{
 					printf("별로 의미 없다.\n");
-					InputGetch(); 
 				}
 			default:
 				break;
@@ -188,7 +181,7 @@ void Prologue()
 	WaitSecond(1.8);
 	printf("나는 사형 선고를 받았다.\n");
 	WaitSecond(1.5);
-	printf("눈을 떠보니 컴퓨터외 공구상자가 보인다.\n");
+	printf("눈을 떠보니 컴퓨터와 공구상자가 보인다.\n");
 	WaitSecond(1.5);
 	printf("모든 것이 낯선 공간..\n");
 	WaitSecond(1.5);
@@ -235,13 +228,17 @@ void T_TV()
 						getch();
 						inven = DI_Memo;
 					}
-					else 
+					else if (inven != DI_Hammer)
 					{
 						printf("부수려면 무언가 필요할 것 같다.\n\n");
 						InputGetch();
-						break; 
+						return; 
+					} else {
+						printf("부서져 있는 티비다.");
+						InputGetch();
+						return; 
 					}
-					break;
+					return;
 				case 2:
 					return;
 				default:
@@ -311,19 +308,19 @@ void T_ToolBox()
 						case 2:
 							printf("돌아간다.\n\n");
 							InputGetch();
-							break; 
+							return; 
 					}
 					break;
 				case 2:
 					printf("[펜치]\n\n");
 					printf("펜치가 있다.\n\n");
 					InputGetch();
-					break;
+					return T_ToolBox();
 				case 3:
 					printf("[톱]\n\n");
 					printf("톱이 있다.\n\n");
 					InputGetch();
-					break;
+					return;
 				case 4:
 					printf("돌아간다.\n\n");
 					InputGetch();
@@ -376,6 +373,7 @@ void T_Door()
 					
 					if (passwordInput == PassWord)
 					{
+						printf("탈출 성공.\n\n");
 						complete = 0;
 						return;
 					}
@@ -397,4 +395,10 @@ void T_Door()
 			
 		}
 	}
+}
+
+void InputGetch()
+{
+	printf("계속 하려면 아무 키나 누르시오...\n\n");
+	getch();
 }
