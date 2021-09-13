@@ -1,28 +1,35 @@
+/*
+ê°œë°œì : ì‹¬ì˜í›ˆ, ë°•í˜•ì¤€
+ê°œë°œì¼ : 2021.09.08.
+ë¬¸ì˜ : yunghoon1010@naver.com
+*/
+
+
 #include <stdio.h>
 #include <Windows.h>
 #include <conio.h>
 
-// ¸Ş´º ¼±ÅÃ 
+// ë©”ë‰´ ì„ íƒ 
 #define m_Start 1
 #define m_Exit 0
 
-// ºñ¹Ğ¹øÈ£ 
+// ë¹„ë°€ë²ˆí˜¸ 
 #define PassWord 031231 
 
-// ¹æ¿¡¼­ Á¢±Ù°¡´ÉÇÑ Àå¼Ò 
+// ë°©ì—ì„œ ì ‘ê·¼ê°€ëŠ¥í•œ ì¥ì†Œ 
 #define DT_Inven	1000 
 #define DT_TV 		1001	 
 #define DT_ToolBox 	1002
 #define DT_Door		1003
 
-// ¿ÀºêÀèÆ®
+// ì˜¤ë¸Œì­íŠ¸
 #define DO_Memo 		2000
 #define DO_DirtyCoat 	2001
 #define DO_Password		2002
 #define DO_Humun 		2010
 	#define DO_MoneyPocket 	2011
 
-// ¾ÆÀÌÅÛ
+// ì•„ì´í…œ
 #define DI_Hammer 	3000
 #define DI_Pench 	3001
 #define DI_Top 		3002
@@ -38,37 +45,37 @@ int complete = 1;
 
 int passwordInput = 0;
 
-void GameStart(); // °ÔÀÓ ½ÃÀÛ ÇÔ¼ö
-void Prologue();	// ÇÁ·Ñ·Î±×
+void GameStart(); // ê²Œì„ ì‹œì‘ í•¨ìˆ˜
+void Prologue();	// í”„ë¡¤ë¡œê·¸
 
 void Clear()
 {
 	system("cls");
 }
 
-// ÀÎº¥Åä¸® 
+// ì¸ë²¤í† ë¦¬ 
 int inven;
 
-void T_Inven();		// ÀÎº¥Åä¸®
+void T_Inven();		// ì¸ë²¤í† ë¦¬
  
-void T_TV();		// Æ¼ºñ 
-	void O_Memo();	// ¸Ş¸ğÁö 
-void T_ToolBox();	// °ø±¸»óÀÚ 
-		void I_Hammer();	// ÇØ¸Ó
-		void I_Pench();		// ÆæÄ¡
-		void I_Top();		// Åé 
-void T_Cabinet(); 	// Ä³ºñ³İ
-	void O_DirtyCoat();	// ´õ·¯¿î ÄÚÆ® 
-	void O_Humun();		// »ç¶÷½ÃÃ¼ 
-		void O_MoneyPocket();		// Áö°© 
-			void I_PeopleCard();	// ÁÖ¹Îµî·ÏÁõ
-			void I_Money();			// µ·
-void T_Door();	// ¹®
-	void O_Password();	// ¹® ºñ¹Ğ¹øÈ£ ÀÔ·Â
+void T_TV();		// í‹°ë¹„ 
+	void O_Memo();	// ë©”ëª¨ì§€ 
+void T_ToolBox();	// ê³µêµ¬ìƒì 
+		void I_Hammer();	// í•´ë¨¸
+		void I_Pench();		// íœì¹˜
+		void I_Top();		// í†± 
+void T_Cabinet(); 	// ìºë¹„ë„·
+	void O_DirtyCoat();	// ë”ëŸ¬ìš´ ì½”íŠ¸ 
+	void O_Humun();		// ì‚¬ëŒì‹œì²´ 
+		void O_MoneyPocket();		// ì§€ê°‘ 
+			void I_PeopleCard();	// ì£¼ë¯¼ë“±ë¡ì¦
+			void I_Money();			// ëˆ
+void T_Door();	// ë¬¸
+	void O_Password();	// ë¬¸ ë¹„ë°€ë²ˆí˜¸ ì…ë ¥
 
 void InputGetch()
 {
-	printf("°è¼Ó ÇÏ·Á¸é ¾Æ¹« Å°³ª ´©¸£½Ã¿À...\n\n");
+	printf("ê³„ì† í•˜ë ¤ë©´ ì•„ë¬´ í‚¤ë‚˜ ëˆ„ë¥´ì‹œì˜¤...\n\n");
 	getch();
 }
  
@@ -84,7 +91,7 @@ void RenderLine()
 
 void ErrorMessage()
 {
-	printf("ÀÔ·Â¿¡·¯ [ERROR]\n\n");
+	printf("ì…ë ¥ì—ëŸ¬ [ERROR]\n\n");
 }
  
 int main(void)
@@ -95,8 +102,8 @@ int main(void)
 	{
 		Clear();
 		RenderLine();
-		printf("TITLE : °ËÀº¹æ\n\n");
-		printf("1. °ÔÀÓ½ÃÀÛ    2. °ÔÀÓÁ¾·á\n\n");
+		printf("TITLE : ê²€ì€ë°©\n\n");
+		printf("1. ê²Œì„ì‹œì‘    2. ê²Œì„ì¢…ë£Œ\n\n");
 		printf(">>> "); 
 		scanf("%d", &menu);
 		switch(menu)
@@ -105,7 +112,7 @@ int main(void)
 				GameStart();
 				break;
 			case m_Exit:
-				printf("Á¾·á µÇ¾ú½À´Ï´Ù.");
+				printf("ì¢…ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 				return 0;
 			default:
 				ErrorMessage();
@@ -125,8 +132,8 @@ void GameStart()
 	{
 		Clear();
 		RenderLine();
-		printf("[¹æ]\n\n");
-		printf("1. TV    2. °ø±¸»óÀÚ    3. ¹®    0. ÀÎº¥Åä¸®\n\n");
+		printf("[ë°©]\n\n");
+		printf("1. TV    2. ê³µêµ¬ìƒì    3. ë¬¸    0. ì¸ë²¤í† ë¦¬\n\n");
 		printf(">>> ");
 		scanf("%d", &g_Select);
 		g_Select += 1000;
@@ -145,8 +152,8 @@ void GameStart()
 				if (complete) {
 					Clear();
 					RenderLine();
-					printf("[³¡]\n\n");
-					printf("°ÔÀÓ Å¬¸®¾î!\n\n");
+					printf("[ë]\n\n");
+					printf("ê²Œì„ í´ë¦¬ì–´!\n\n");
 					InputGetch();
 					Clear(); 
 					return;
@@ -158,14 +165,14 @@ void GameStart()
 				{
 					Clear();
 					RenderLine();
-					printf("[¸Ş¸ğ]\n\n");
-					printf("¸Ş¸ğ¿¡ 031231ÀÌ¶ó ÀûÇôÀÖ´Ù.");
+					printf("[ë©”ëª¨]\n\n");
+					printf("ë©”ëª¨ì— 031231ì´ë¼ ì í˜€ìˆë‹¤.");
 					InputGetch();
 					break; 
 				}
 				else
 				{
-					printf("º°·Î ÀÇ¹Ì ¾ø´Ù.\n");
+					printf("ë³„ë¡œ ì˜ë¯¸ ì—†ë‹¤.\n");
 					InputGetch(); 
 				}
 			default:
@@ -176,18 +183,18 @@ void GameStart()
 
 void Prologue()
 {
-	printf("[ÇÁ·Ñ·Î±×]\n\n"); 
-	printf("2020³â 8¿ù 20ÀÏ.\n\n");
+	printf("[í”„ë¡¤ë¡œê·¸]\n\n"); 
+	printf("2020ë…„ 8ì›” 20ì¼.\n\n");
 	WaitSecond(1.8);
-	printf("³ª´Â »çÇü ¼±°í¸¦ ¹Ş¾Ò´Ù.\n");
+	printf("ë‚˜ëŠ” ì‚¬í˜• ì„ ê³ ë¥¼ ë°›ì•˜ë‹¤.\n");
 	WaitSecond(1.5);
-	printf("´«À» ¶°º¸´Ï ÄÄÇ»ÅÍ¿Ü °ø±¸»óÀÚ°¡ º¸ÀÎ´Ù.\n");
+	printf("ëˆˆì„ ë– ë³´ë‹ˆ ì»´í“¨í„°ì™¸ ê³µêµ¬ìƒìê°€ ë³´ì¸ë‹¤.\n");
 	WaitSecond(1.5);
-	printf("¸ğµç °ÍÀÌ ³¸¼± °ø°£..\n");
+	printf("ëª¨ë“  ê²ƒì´ ë‚¯ì„  ê³µê°„..\n");
 	WaitSecond(1.5);
-	printf("¸Ó¸®°¡ ±úÁú µíÀÌ ¾ÆÆÄ¿Ô°í, ¾îÁ¦ÀÇ ±â¾ïÀÌ ³ªÁú ¾Ê´Â´Ù.\n");
+	printf("ë¨¸ë¦¬ê°€ ê¹¨ì§ˆ ë“¯ì´ ì•„íŒŒì™”ê³ , ì–´ì œì˜ ê¸°ì–µì´ ë‚˜ì§ˆ ì•ŠëŠ”ë‹¤.\n");
 	WaitSecond(1.5);
-	printf("ÇÑ¹ø.. ÁÖº¯À» µÑ·¯º¸ÀÚ.. \n\n");
+	printf("í•œë²ˆ.. ì£¼ë³€ì„ ë‘˜ëŸ¬ë³´ì.. \n\n");
 	InputGetch();
 	
 	return;
@@ -198,7 +205,7 @@ void T_TV()
 	Clear();
 	RenderLine();
 	printf("[TV]\n\n");
-	printf("1. »ìÆìº»´Ù    2. µ¹¾Æ°¡±â\n\n");
+	printf("1. ì‚´í´ë³¸ë‹¤    2. ëŒì•„ê°€ê¸°\n\n");
 	printf(">>> ");
 	scanf("%d", &g_Select);
 	
@@ -211,7 +218,7 @@ void T_TV()
 			RenderLine();
 			printf("[TV]\n\n");
 			
-			printf("1. ºÎ¼ø´Ù.    2. µ¹¾Æ°£´Ù.\n\n");
+			printf("1. ë¶€ìˆœë‹¤.    2. ëŒì•„ê°„ë‹¤.\n\n");
 			printf(">>> ");
 			scanf("%d", &g_Select);
 			switch(g_Select)
@@ -222,15 +229,15 @@ void T_TV()
 					printf("[TV]\n\n");
 					if (inven == DI_Hammer)
 					{
-						printf("ÇØ¸Ó´Â ºÎ¼­Áö°í ¹«¾ğ°¡ ¶³¾îÁ®ÀÖ´Ù.\n\n");
-						printf("¸Ş¸ğ¸¦ È¹µæÇß´Ù.\n\n");
+						printf("í•´ë¨¸ëŠ” ë¶€ì„œì§€ê³  ë¬´ì–¸ê°€ ë–¨ì–´ì ¸ìˆë‹¤.\n\n");
+						printf("ë©”ëª¨ë¥¼ íšë“í–ˆë‹¤.\n\n");
 						printf(">>> ");
 						getch();
 						inven = DI_Memo;
 					}
 					else 
 					{
-						printf("ºÎ¼ö·Á¸é ¹«¾ğ°¡ ÇÊ¿äÇÒ °Í °°´Ù.\n\n");
+						printf("ë¶€ìˆ˜ë ¤ë©´ ë¬´ì–¸ê°€ í•„ìš”í•  ê²ƒ ê°™ë‹¤.\n\n");
 						InputGetch();
 						break; 
 					}
@@ -242,7 +249,7 @@ void T_TV()
 					break;
 			 }
 		case 2:
-			printf("µ¹¾Æ°£´Ù.\n\n");
+			printf("ëŒì•„ê°„ë‹¤.\n\n");
 				InputGetch();
 				return;
 		default:
@@ -257,8 +264,8 @@ void T_ToolBox()
 {
 	Clear();
 	RenderLine();
-	printf("[°ø±¸»óÀÚ]\n\n");
-	printf("1. ¿­¾îº»´Ù    2. µ¹¾Æ°¡±â\n\n");
+	printf("[ê³µêµ¬ìƒì]\n\n");
+	printf("1. ì—´ì–´ë³¸ë‹¤    2. ëŒì•„ê°€ê¸°\n\n");
 	printf(">>> ");
 	scanf("%d", &g_Select);
 	
@@ -269,9 +276,9 @@ void T_ToolBox()
 		case 1:
 			Clear();
 			RenderLine();
-			printf("[°ø±¸»óÀÚ ¾È]\n\n");
+			printf("[ê³µêµ¬ìƒì ì•ˆ]\n\n");
 			
-			printf("1. ÇØ¸Ó    2. ÆæÄ¡    3. Åé   4. µ¹¾Æ°£´Ù.\n\n");
+			printf("1. í•´ë¨¸    2. íœì¹˜    3. í†±   4. ëŒì•„ê°„ë‹¤.\n\n");
 			printf(">>> ");
 			scanf("%d", &g_Select);
 			Clear();
@@ -279,46 +286,46 @@ void T_ToolBox()
 			switch(g_Select)
 			{
 				case 1:
-					printf("[ÇØ¸Ó]\n\n");
-					printf("1. °¡Á®°£´Ù   2. °¡Á®°¡Áö¾Ê´Â´Ù.\n\n");
+					printf("[í•´ë¨¸]\n\n");
+					printf("1. ê°€ì ¸ê°„ë‹¤   2. ê°€ì ¸ê°€ì§€ì•ŠëŠ”ë‹¤.\n\n");
 					printf(">>> ");
 					scanf("%d", &g_Select);
 					
 					Clear();
 					RenderLine();
-					printf("[ÇØ¸Ó]\n\n");
+					printf("[í•´ë¨¸]\n\n");
 					
 					switch(g_Select)
 					{
 						case 1:
 							if (inven == DI_Hammer)
 							{
-								printf("ÀÌ¹Ì ÇØ¸Ó¸¦ Áö´Ï°íÀÖ´Ù.\n\n");
+								printf("ì´ë¯¸ í•´ë¨¸ë¥¼ ì§€ë‹ˆê³ ìˆë‹¤.\n\n");
 								InputGetch();
 							}
 							else
 							{
 								inven = DI_Hammer;
-								printf("ÇØ¸Ó¸¦ È¹µæÇß´Ù.");
+								printf("í•´ë¨¸ë¥¼ íšë“í–ˆë‹¤.");
 							}
 						case 2:
-							printf("µ¹¾Æ°£´Ù.\n\n");
+							printf("ëŒì•„ê°„ë‹¤.\n\n");
 							InputGetch();
 							break; 
 					}
 					break;
 				case 2:
-					printf("[ÆæÄ¡]\n\n");
-					printf("ÆæÄ¡°¡ ÀÖ´Ù.\n\n");
+					printf("[íœì¹˜]\n\n");
+					printf("íœì¹˜ê°€ ìˆë‹¤.\n\n");
 					InputGetch();
 					break;
 				case 3:
-					printf("[Åé]\n\n");
-					printf("ÅéÀÌ ÀÖ´Ù.\n\n");
+					printf("[í†±]\n\n");
+					printf("í†±ì´ ìˆë‹¤.\n\n");
 					InputGetch();
 					break;
 				case 4:
-					printf("µ¹¾Æ°£´Ù.\n\n");
+					printf("ëŒì•„ê°„ë‹¤.\n\n");
 					InputGetch();
 					return;
 				default:
@@ -326,7 +333,7 @@ void T_ToolBox()
 					break;
 			 }
 		case 2:
-			printf("µ¹¾Æ°£´Ù.\n\n");
+			printf("ëŒì•„ê°„ë‹¤.\n\n");
 			InputGetch();
 			return;
 		default:
@@ -340,8 +347,8 @@ void T_Door()
 {
 	Clear();
 	RenderLine();
-	printf("[¹®]\n\n");
-	printf("1. »ìÆìº»´Ù    2. µ¹¾Æ°¡±â\n\n");
+	printf("[ë¬¸]\n\n");
+	printf("1. ì‚´í´ë³¸ë‹¤    2. ëŒì•„ê°€ê¸°\n\n");
 	printf(">>> ");
 	scanf("%d", &g_Select);
 	
@@ -352,9 +359,9 @@ void T_Door()
 		case 1:
 			Clear();
 			RenderLine();
-			printf("[¹®]\n\n");
-			printf("ºñ¹Ğ¹øÈ£ Àá±İÀåÄ¡°¡ °É·ÁÀÖ´Ù.\n\n");
-			printf("1. »ìÆìº»´Ù.    2. µ¹¾Æ°£´Ù.\n\n");
+			printf("[ë¬¸]\n\n");
+			printf("ë¹„ë°€ë²ˆí˜¸ ì ê¸ˆì¥ì¹˜ê°€ ê±¸ë ¤ìˆë‹¤.\n\n");
+			printf("1. ì‚´í´ë³¸ë‹¤.    2. ëŒì•„ê°„ë‹¤.\n\n");
 			printf(">>> ");
 			scanf("%d", &g_Select);
 			switch(g_Select)
@@ -362,8 +369,8 @@ void T_Door()
 				case 1:
 					Clear();
 					RenderLine();
-					printf("[Àá±İÀåÄ¡]\n\n");
-					printf(" ºñ¹Ğ¹øÈ£¸¦ ÀÔ·Â ÇÏ½Ã¿À.\n\n");
+					printf("[ì ê¸ˆì¥ì¹˜]\n\n");
+					printf(" ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥ í•˜ì‹œì˜¤.\n\n");
 					printf(">>> ");
 					scanf("%d", &passwordInput);
 					
@@ -381,7 +388,7 @@ void T_Door()
 			 }
 			 break;
 		case 2:
-			printf("µ¹¾Æ°£´Ù.\n\n");
+			printf("ëŒì•„ê°„ë‹¤.\n\n");
 			InputGetch();
 			return;
 		default:
